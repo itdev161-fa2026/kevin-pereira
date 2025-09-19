@@ -9,7 +9,6 @@
     "start": "node server.js",
     "server": "nodemon server.js"
   },
-  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/itdev161-fa2026/kevin-pereira.git"
