@@ -51,7 +51,7 @@ app.post(
 
       await user.save();
 
-      const payload = { user: { id: user.id } };
+      const payload = { user: { id: user.id, name: user.name } };
       jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
         if (err) throw err;
         res.json({ msg: 'User registered successfully', token });
@@ -83,7 +83,8 @@ app.post(
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
 
-      const payload = { user: { id: user.id } };
+      
+      const payload = { user: { id: user.id, name: user.name } };
       jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
         if (err) throw err;
         res.json({ msg: 'User logged in successfully', token });
