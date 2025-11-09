@@ -1,35 +1,53 @@
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
 
-.home-header {
-  margin-bottom: 2rem;
-}
+  .home-header {
+    margin-bottom: 2rem;
+  }
 
-.home-header h1 {
-  color: #282c34;
-  margin: 0;
-}
+  .home-header h1 {
+    color: #282c34;
+    margin: 0;
+   margin-bottom: 0.5rem;
+  }
 
-.loading, .error {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-top: 3rem;
-}
+ .auth-message {
+   color: #666;
+   font-size: 1rem;
+   margin: 0;
+ }
 
-.error {
-  color: #d32f2f;
-}
+ .auth-message a {
+   color: #61dafb;
+   text-decoration: none;
+   font-weight: 600;
+ }
 
-.no-posts {
-  text-align: center;
-  margin-top: 3rem;
-  color: #666;
-}
+ .auth-message a:hover {
+   text-decoration: underline;
+ }
 
-.posts-list {
-  display: flex;
-  flex-direction: column;
-}
+  .loading,
+  .error {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 3rem;
+  }
+
+  .error {
+    color: #d32f2f;
+  }
+
+  .no-posts {
+    text-align: center;
+    margin-top: 3rem;
+    color: #666;
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+  }
