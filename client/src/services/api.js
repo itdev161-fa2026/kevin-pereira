@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:3000/api';
 
-// Create axios instance
 const api = axios.create({
   baseURL: API_URL,
 });
@@ -12,6 +11,7 @@ api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {
+      // This matches your backend auth middleware (x-auth-token)
       config.headers['x-auth-token'] = token;
     }
     return config;
@@ -34,7 +34,49 @@ api.interceptors.response.use(
   }
 );
 
-// Authentication API calls
+export const getComments = async (postId) => {
+  try {
+    const response = await api.get(`/posts/${postId}/comments`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    throw error;
+  }
+};
+
+// Create a new comment on a post (must be logged in)
+export const createComment = async (postId, body) => {
+  try {
+    const response = await api.post(`/posts/${postId}/comments`, { body });
+    return response.data;
+  } catch (error) {
+    console.error('Error creating comment:', error);
+    throw error;
+  }
+};
+
+// Update an existing comment (owner only)
+export const updateComment = async (commentId, body) => {
+  try {
+    const response = await api.put(`/comments/${commentId}`, { body });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating comment:', error);
+    throw error;
+  }
+};
+
+// Delete a comment (owner only)
+export const deleteComment = async (commentId) => {
+  try {
+    const response = await api.delete(`/comments/${commentId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting comment:', error);
+    throw error;
+  }
+};
+
 export const registerUser = async (name, email, password) => {
   try {
     const response = await api.post('/users', { name, email, password });
@@ -108,4 +150,3 @@ export const deletePost = async (id) => {
     throw error;
   }
 };
-

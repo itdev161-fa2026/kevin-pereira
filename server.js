@@ -1,4 +1,3 @@
-
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -9,6 +8,8 @@ import Post from './models/Post.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import auth from './middleware/auth.js';
+import commentsRoute from './routes/api/comments.js';
+
 
 
 dotenv.config();
@@ -22,6 +23,7 @@ app.use(cors({ origin: 'http://localhost:5173' }));
 
 app.use(express.json());                       
 app.use(express.urlencoded({ extended: false })); 
+app.use('/api', commentsRoute);
 
 
 app.get('/', (req, res) => res.send('http get request sent to root api endpoint'));
